@@ -19,20 +19,25 @@ Route::get('post', function () {
     return view('user.post');
 })->name('post');
 
-Route::get('admin/home', function () {
-    return view('admin.home');
-});
+
+Route::resource('admin/post', 'Admin\PostController');
+Route::resource('admin/tag', 'Admin\TagController');
+Route::resource('admin/category', 'Admin\CategoryController');
+
+// Route::get('admin/home', function () {
+//     return view('admin.home');
+// });
 
 
-Route::get('admin/post', function () {
-    return view('admin.posts.add');
-});
+// Route::get('admin/post', function () {
+//     return view('admin.posts.add');
+// });
 
 
-Route::get('admin/tag', function () {
-    return view('admin.tags.add');
-});
+// Route::get('admin/tag', function () {
+//     return view('admin.tags.add');
+// });
 
-Route::get('admin/category', function () {
-    return view('admin.categories.add');
-});
+// Route::get('admin/category', function () {
+//     return view('admin.categories.add');
+// });
