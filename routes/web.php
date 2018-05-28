@@ -21,4 +21,18 @@ Route::get('post', function () {
 
 Route::get('admin/home', function () {
     return view('admin.home');
-})->name('post');
+});
+
+
+Route::get('admin/post', function () {
+    return view('admin.posts.add');
+});
+
+
+Route::get('admin/tag', function () {
+    return view('admin.tags.add');
+});
+
+Route::get('admin/category', function () {
+    return view('admin.categories.add');
+});
