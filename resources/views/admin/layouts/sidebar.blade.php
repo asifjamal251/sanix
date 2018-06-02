@@ -54,7 +54,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('user.index')}}" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 User
