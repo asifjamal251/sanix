@@ -39,13 +39,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('category.show')}}" class="nav-link">
+                <a href="{{route('category.index')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('tag.show')}}" class="nav-link">
+                <a href="{{route('tag.index')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Tags</p>
                 </a>
