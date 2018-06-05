@@ -12,16 +12,23 @@
     
     <div class="card-body pad">
 
-
+   
 
      <!-- general form elements -->
             <div class="card card-primary">
+               @if(count($errors) > 0)
+                @foreach ($errors->all() as $error)
+                <p class="alert alert-danger">{{ $error }}</p>
+                @endforeach
+                @endif
               <div class="card-header">
                 <h3 class="card-title">Add Post</h3>
+               
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="{{ route('post.store') }}" method="post">
+                {{ csrf_field() }}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">Title</label>
