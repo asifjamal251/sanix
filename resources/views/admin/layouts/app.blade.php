@@ -8,7 +8,10 @@
 @include('admin.layouts.header')
 @include('admin.layouts.sidebar')
 
-
+<div class="container">
+     @include('paratials.errors')
+     @include('paratials.success')
+</div>
 @section('main-content')
   @show
 

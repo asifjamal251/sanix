@@ -21,7 +21,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <form role="form" action="{{ route('category.store') }}" method="post">
+                {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">Title</label>
@@ -32,6 +33,7 @@
                     <label for="slug">Slug</label>
                     <input type="text" class="form-control" id="slug" name="slug" placeholder="slug">
                   </div>
+                
                  
 
 
