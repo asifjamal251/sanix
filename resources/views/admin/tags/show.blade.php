@@ -24,19 +24,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th >Si No.</th>
+                  <th style="max-width:80px" >Si No.</th>
                   <th>Tag Name</th>
                   <th>Slug</th>
-                  <th>Action</th>
+                  <th style="max-width:80px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($tags as $tag)
                           <tr>
-                            <td>{{ $loop->index + 1 }}</td>
+                            <td style="max-width:80px">{{ $loop->index + 1 }}</td>
                             <td>{{ $tag->name }}</td>
                             <td>{{ $tag->slug }}</td>
-                              <td><a href="{{ route('tag.edit',$tag->id) }}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                              <td style="max-width:80px"><a class="" href="{{ route('tag.edit',$tag->id) }}"><i class="fa fa-edit"></i></span></a>
                                  / 
                                 <form id="delete-form-{{ $tag->id }}" method="post" action="{{ route('tag.destroy',$tag->id) }}" style="display: none">
                                   {{ csrf_field() }}
@@ -50,7 +50,7 @@
                                     }
                                     else{
                                       event.preventDefault();
-                                    }" ><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    }" ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                               </td>
                             </tr>
                         @endforeach
