@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+@endsection
 
 @section('main-content')
  
@@ -42,6 +45,20 @@
                     <input type="checkbox" class="form-check-input" name="status" id="publish">
                     <label class="form-check-label" for="exampleCheck1" @if($post->status == 1) checked @endif>Publish</label>
                   </div>
+
+                  <div class="form-group">
+                  <label>Multiple</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+
 
                   <div class="form-group">
                     <label for="image">Image</label>
@@ -88,4 +105,14 @@
   <!-- /.content-wrapper -->
 
 
+@endsection
+
+@section('footerSection')
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+<script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    $(".select2").select2();
+  });
+</script>
 @endsection
