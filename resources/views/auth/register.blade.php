@@ -1,7 +1,11 @@
-@extends('layouts.app')
+@extends('user/app')
+@section('bg-img',asset('user/img/home-bg.jpg'))
 
-@section('content')
-<div class="container">
+@section('title','Register')
+@section('sub-title','Technologies')
+
+
+@section('main-content')<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

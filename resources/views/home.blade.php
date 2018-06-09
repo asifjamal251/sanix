@@ -1,4 +1,11 @@
-@extends('layouts.app')
+@extends('user/app')
+@section('bg-img',asset('user/img/home-bg.jpg'))
+
+@section('title','Home')
+@section('sub-title','Technologies')
+
+
+@section('main-content')
 
 @section('content')
 <div class="container">

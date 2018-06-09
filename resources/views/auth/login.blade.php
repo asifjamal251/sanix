@@ -1,6 +1,17 @@
-@extends('layouts.app')
 
-@section('content')
+@extends('user/app')
+@section('bg-img',asset('user/img/home-bg.jpg'))
+
+@section('title','User Login')
+@section('sub-title','Sanix Technologies')
+
+
+@section('main-content')
+    
+
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -54,6 +65,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+
+                                <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}

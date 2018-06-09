@@ -1,7 +1,7 @@
 @extends('user/app')
 @section('bg-img',asset('user/img/home-bg.jpg'))
 
-@section('title','Sanix Blog')
+@section('title','Login')
 @section('sub-title','Technologies')
 
 
