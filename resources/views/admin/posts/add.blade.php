@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+@endsection
 
 @section('main-content')
  
@@ -23,7 +26,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{ route('post.store') }}" method="post">
+              <form role="form" action="{{ route('post.store') }}" method="post"  enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="card-body">
                   <div class="form-group">
@@ -39,9 +42,32 @@
                     <input type="text" class="form-control" id="slug" name="slug" placeholder="slug">
                   </div>
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="status" id="publish">
+                    <input type="checkbox" class="form-check-input" name="status" id="publish" value="1">
                     <label class="form-check-label" for="exampleCheck1">Publish</label>
                   </div>
+
+
+                  <div class="form-group">
+                  <label>Select Tag</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                    @foreach ($tags as $tag)
+                      <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                    
+                  </select>
+                </div>
+
+                  <div class="form-group">
+                  <label>Select Categories</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                    @foreach ($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+
+
 
                   <div class="form-group">
                     <label for="image">Image</label>
@@ -85,4 +111,14 @@
   <!-- /.content-wrapper -->
 
 
+@endsection
+
+@section('footerSection')
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+<script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    $(".select2").select2();
+  });
+</script>
 @endsection

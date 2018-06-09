@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\user\Post;
+use App\Model\user\Tag;
+use App\Model\user\Category;
 
 class PostController extends Controller
 {
@@ -26,7 +28,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.add');    }
+        $tags = tag::all();
+        $categories = category::all();
+        return view('admin.posts.add', compact('tags','categories'));   
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -44,12 +49,23 @@ class PostController extends Controller
 
         ]);
 
+        if($request->hasFile('image')){
+           //  $request->image->getClientOriginalName();
+            $imageName=$request->image->store('public');
+         }
+
         $post = new post;
+        $post->image = $imageName;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug; 
         $post->body = $request->body; 
+        $post->status = $request->status; 
         $post->save(); 
+
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->categories);
+
 
         return redirect(route('post.index')); 
      }
@@ -74,8 +90,13 @@ class PostController extends Controller
     public function edit($id)
     {
         //
-        $post = post::where('id',$id)->first();
-        return view('admin.posts.edit', compact('post'));
+        $post = post::with('tags','categories')->where('id',$id)->first();
+
+        $tags = tag::all();
+        $categories = category::all();
+        return view('admin.posts.edit', compact('tags','categories','post'));
+
+       //return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -96,11 +117,21 @@ class PostController extends Controller
 
         ]);
 
+         if($request->hasFile('image')){
+           // return $request->image->getClientOriginalName()->store('public');
+            $imageName=$request->image->store('public');
+         }
+
         $post = post::find($id);
+        $post->image = $imageName;
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug; 
         $post->body = $request->body; 
+         $post->status = $request->status;
+        $post->tags()->sync($request->tags);
+        $post->categories()->sync($request->categories);
+
         $post->save(); 
 
         return redirect(route('post.index')); 
