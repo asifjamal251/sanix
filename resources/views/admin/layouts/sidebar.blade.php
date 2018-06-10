@@ -58,8 +58,23 @@
               <i class="nav-icon fa fa-th"></i>
               <p>
                 User
+                <i class="fa fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('role.index')}}" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Roles</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('permission.index')}}" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Permissions</p>
+                </a>
+              </li>
+            </ul>
           </li>
         
         </ul>

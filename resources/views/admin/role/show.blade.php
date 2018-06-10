@@ -16,8 +16,8 @@
 <div class="card-body pad">
      <div class="card">
             <div class="card-header">
-              <h3 class="float-left">Users</h3>
-              <a class="btn btn-success float-right" href="{{ route('user.create') }}">Add New</a>
+              <h3 class="float-left">Roles</h3>
+              <a class="btn btn-success float-right" href="{{ route('role.create') }}">Add New</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -25,18 +25,18 @@
                 <thead>
                 <tr>
                   <th style="max-width:80px" >Si No.</th>
-                  <th>User Name</th>
+                  <th>Role Name</th>
                   <th style="max-width:80px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @foreach ($roles as $role)
                           <tr>
                             <td style="max-width:80px">{{ $loop->index + 1 }}</td>
-                            <td>{{ $user->name }}</td>
-                              <td style="max-width:80px"><a class="" href="{{ route('user.edit',$user->id) }}"><i class="fa fa-edit"></i></span></a>
+                            <td>{{ $role->name }}</td>
+                              <td style="max-width:80px"><a class="" href="{{ route('role.edit',$role->id) }}"><i class="fa fa-edit"></i></span></a>
                                  / 
-                                <form id="delete-form-{{ $user->id }}" method="post" action="{{ route('user.destroy',$user->id) }}" style="display: none">
+                                <form id="delete-form-{{ $role->id }}" method="post" action="{{ route('role.destroy',$role->id) }}" style="display: none">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
                                 </form>
@@ -44,7 +44,7 @@
                                 if(confirm('Are you sure, You Want to delete this?'))
                                     {
                                       event.preventDefault();
-                                      document.getElementById('delete-form-{{ $user->id }}').submit();
+                                      document.getElementById('delete-form-{{ $role->id }}').submit();
                                     }
                                     else{
                                       event.preventDefault();

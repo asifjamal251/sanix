@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Model\admin\admin;
-use App\Model\admin\role;
 use App\Http\Controllers\Controller;
+use App\Model\admin\role;
+use App\Model\admin\Permission;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
+
      /**
      * Create a new controller instance.
      *
@@ -18,6 +19,8 @@ class UserController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +28,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = admin::all();
-        return view('admin.users.show',compact('users'));
+        //
+        $roles = role::all();
+        return view('admin.role.show',compact('roles'));
     }
 
     /**
@@ -36,8 +40,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = role::all();
-         return view('admin.users.creat',compact('roles'));
+        //
+        $permissions = Permission::all();
+        return view('admin.role.add',compact('permissions'));
     }
 
     /**
@@ -49,6 +54,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+         'name' => 'required|max:50|unique:roles'
+        ]);
+        $role = new role;
+        $role->name =$request->name;
+        $role->save();
+        return redirect(route('role.index'));
     }
 
     /**
@@ -71,6 +83,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $role = role:: find($id);
+        return view('admin.role.edit',compact('role'));
     }
 
     /**
@@ -83,6 +97,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+         'name' => 'required|max:50'
+        ]);
+        $role = role::find($id);
+        $role->name =$request->name;
+        $role->save();
+        return redirect(route('role.index'));
     }
 
     /**
@@ -94,5 +115,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        role::where('id',$id)->delete();
+        return redirect()->back();
     }
 }
