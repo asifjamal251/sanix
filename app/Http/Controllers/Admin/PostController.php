@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\user\Post;
-use App\Model\user\Tag;
-use App\Model\user\Category;
+use App\Model\user\category;
+use App\Model\user\post;
+use App\Model\user\tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -38,9 +38,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags = tag::all();
-        $categories = category::all();
-        return view('admin.posts.add', compact('tags','categories'));   
+        if(Auth::user()->can('post.create')){
+            $tags = tag::all();
+            $categories = category::all();
+            return view('admin.posts.add', compact('tags','categories')); 
+        }
+        return redirect(route('admin.home'));
+          
      }
 
     /**
@@ -60,8 +64,8 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile('image')){
-           //  $request->image->getClientOriginalName();
-            $imageName=$request->image->store('public');
+             $fileName=$request->image->getClientOriginalName();
+            $imageName=$request->image->storeAs('public',$fileName);
          }
 
         $post = new post;
@@ -100,12 +104,14 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+         if(Auth::user()->can('post.create')){
         $post = post::with('tags','categories')->where('id',$id)->first();
 
         $tags = tag::all();
         $categories = category::all();
         return view('admin.posts.edit', compact('tags','categories','post'));
-
+      }
+         return redirect(route('admin.home'));
        //return view('admin.posts.edit', compact('post'));
     }
 

@@ -26,6 +26,8 @@
                 <tr>
                   <th style="max-width:80px" >Si No.</th>
                   <th>User Name</th>
+                  <th>Assign Roles</th>
+                  <th>Status</th>
                   <th style="max-width:80px">Action</th>
                 </tr>
                 </thead>
@@ -34,6 +36,14 @@
                           <tr>
                             <td style="max-width:80px">{{ $loop->index + 1 }}</td>
                             <td>{{ $user->name }}</td>
+                            <td>
+                              @foreach ($user->roles as $role)
+                                {{$role->name}},
+                              @endforeach
+                              
+
+                            </td>
+                            <td>{{$user->status? 'Active' : 'Not Active'}}</td>
                               <td style="max-width:80px"><a class="" href="{{ route('user.edit',$user->id) }}"><i class="fa fa-edit"></i></span></a>
                                  / 
                                 <form id="delete-form-{{ $user->id }}" method="post" action="{{ route('user.destroy',$user->id) }}" style="display: none">

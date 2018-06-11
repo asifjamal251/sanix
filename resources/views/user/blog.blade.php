@@ -30,6 +30,7 @@
     -moz-border-radius: 4px;
     border-radius:4px;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    overflow: hidden;
 
 }
 .index-content .card:hover{
@@ -84,6 +85,13 @@ min-height: 420px;
 small{
   font-size:12px;
 }
+.bg-img-blog{
+  height: 200px;
+    width: 348px;
+    background-size: cover;
+    background-position: center;
+        border-radius: 4px 4px 0 0;
+}
 .blog-content{
   padding: 10px 15px;
 }
@@ -96,9 +104,8 @@ small{
        @foreach ($posts as $post)
                 <div class="col-sm-4 blog-home">
                     <div class="card">
-                        <img src="http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg">
-                        <!-- <img src="{{Storage::disk('local')->url($post->image)}}"> -->
-
+                       
+                        <span class="bg-img-blog" style="background-image: url('@if($post->image != ""){{Storage::disk('local')->url($post->image)}} @else                http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg @endif')"></span>
                         <div class="blog-content">
                           <small class="post-meta">Posted by
                           Start Bootstrap

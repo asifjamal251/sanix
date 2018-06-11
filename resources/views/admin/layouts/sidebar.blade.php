@@ -63,6 +63,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{route('user.index')}}" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Users</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{route('role.index')}}" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Roles</p>

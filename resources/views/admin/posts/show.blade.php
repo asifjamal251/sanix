@@ -17,7 +17,9 @@
      <div class="card">
             <div class="card-header">
               <h3 class="float-left">posts</h3>
-              <a class="btn btn-success float-right" href="{{ route('post.create') }}">Add New</a>
+               @can('posts.create', Auth::user())
+          <a class='col-lg-offset-5 btn btn-success' href="{{ route('post.create') }}">Add New</a>
+        @endcan
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -27,7 +29,12 @@
                   <th >Si No.</th>
                   <th>Post Name</th>
                   <th>Slug</th>
-                  <th>Action</th>
+                   @can('posts.update', Auth::user())
+                   <th>Edit</th>
+                   @endcan
+                   @can('posts.delete', Auth::user())
+                    <th>Delete</th>
+                   @endcan
                   <th>Created At</th>
                 </tr>
                 </thead>
@@ -37,8 +44,16 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
-                              <td><a href="{{ route('post.edit',$post->id) }}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
-                                 / 
+                              
+                                @can('posts.update', Auth::user())
+                                   <td>
+                                <a href="{{ route('post.edit',$post->id) }}"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+
+                               </td>
+                                @endcan
+
+                                 @can('posts.delete', Auth::user())
+                                <td>
                                 <form id="delete-form-{{ $post->id }}" method="post" action="{{ route('post.destroy',$post->id) }}" style="display: none">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
@@ -52,6 +67,7 @@
                                     else{
                                       event.preventDefault();
                                     }" ><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                     @endcan
                               </td>
                               <td>{{ $post->created_at }}</td>
                             </tr>

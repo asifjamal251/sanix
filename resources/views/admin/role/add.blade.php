@@ -37,7 +37,7 @@
                      @foreach ($permissions as $permission)
                      @if ($permission->for == 'post')
                        <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="" value="{{$permission->id}}">
+                      <input class="form-check-input" type="checkbox" name="permission[]" value="{{$permission->id}}">
                       <label class="form-check-label">{{$permission->name}}</label>
                     </div>
                      @endif
@@ -56,7 +56,7 @@
                       @foreach ($permissions as $permission)
                      @if ($permission->for == 'user')
                        <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="" value="{{$permission->id}}">
+                      <input class="form-check-input" type="checkbox" name="permission[]" value="{{$permission->id}}">
                       <label class="form-check-label">{{$permission->name}}</label>
                     </div>
                      @endif
@@ -74,7 +74,7 @@
                       @foreach ($permissions as $permission)
                      @if ($permission->for == 'other')
                        <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="" value="{{$permission->id}}">
+                      <input class="form-check-input" type="checkbox" name="permission[]" value="{{$permission->id}}">
                       <label class="form-check-label">{{$permission->name}}</label>
                     </div>
                      @endif
@@ -91,7 +91,7 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
 
-
+</div>
               </form>
             </div>
         </div>
