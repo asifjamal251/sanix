@@ -147,9 +147,17 @@
 
 @endsection
 
+<<<<<<< HEAD
 
+@section('footerSection')
+<script type="text/javascript" src="{{asset('admin/plugins/select2/select2.full.min.js')}}"></script>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.select2').select2()
+  });
 
+=======
 @section('footerSection')
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
 <script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
@@ -157,6 +165,6 @@
   $(document).ready(function() {
     $(".select2").select2();
   });
+>>>>>>> 45277ed94538b1b6a525266771abf3ae7ce29d8f
 </script>
-
 @endsection
