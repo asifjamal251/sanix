@@ -11,7 +11,7 @@ use App\Model\user\tag;
 class HomeController extends Controller
 {
    public function index(){
-   	$posts = post::where('status',1)->orderBy('created_at','DESC')->paginate(5);
+   	$posts = post::where('status',1)->orderBy('created_at','DESC')->paginate(6);
    	return view('user.blog',compact('posts'));
    }
 
