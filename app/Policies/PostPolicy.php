@@ -24,7 +24,17 @@ class PostPolicy
      */
     public function create(admin $user)
     {
-        return $this->getPermission($user,4);
+       return $this->getPermission($user,4);
+
+        // foreach ($user->roles as $role) {
+        //     foreach ($role->permissions as $permission) {
+        //         if ($permission->id == $p_id) {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+
     }
     /**
      * Determine whether the admin can update the post.
