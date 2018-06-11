@@ -3,10 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Model\admin\admin;
+use App\Model\admin\role;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.show');
+        $users = admin::all();
+        return view('admin.users.show',compact('users'));
     }
 
     /**
@@ -24,7 +36,8 @@ class UserController extends Controller
      */
     public function create()
     {
-         return view('admin.users.creat');
+        $roles = role::all();
+         return view('admin.users.creat',compact('roles'));
     }
 
     /**

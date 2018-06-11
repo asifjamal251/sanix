@@ -1,3 +1,31 @@
+ <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="http://localhost:8000/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <small>Last Login {{ Auth::user()->updated_at->toFormattedDateString() }}</small>
+        </div>
+          
+      </div>
+      <div><p>test</p></div>
+      <hr class="mb-2">
+      <div class="btn elevation-2">
+              <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                  Logout
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+        </div>
+  </aside>
+  <!-- /.control-sidebar -->
  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
@@ -7,12 +35,7 @@
     </div>
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
+ </div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->

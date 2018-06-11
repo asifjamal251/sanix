@@ -16,8 +16,8 @@
 <div class="card-body pad">
      <div class="card">
             <div class="card-header">
-              <h3 class="float-left">Users</h3>
-              <a class="btn btn-success float-right" href="{{ route('user.create') }}">Add New</a>
+              <h3 class="float-left">Permissions</h3>
+              <a class="btn btn-success float-right" href="{{ route('permission.create') }}">Add New</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -25,18 +25,20 @@
                 <thead>
                 <tr>
                   <th style="max-width:80px" >Si No.</th>
-                  <th>User Name</th>
+                  <th>Permission Name</th>
+                  <th>Permissions For</th>
                   <th style="max-width:80px">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @foreach ($permissions as $permission)
                           <tr>
                             <td style="max-width:80px">{{ $loop->index + 1 }}</td>
-                            <td>{{ $user->name }}</td>
-                              <td style="max-width:80px"><a class="" href="{{ route('user.edit',$user->id) }}"><i class="fa fa-edit"></i></span></a>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->for }}</td>
+                              <td style="max-width:80px"><a class="" href="{{ route('permission.edit',$permission->id) }}"><i class="fa fa-edit"></i></span></a>
                                  / 
-                                <form id="delete-form-{{ $user->id }}" method="post" action="{{ route('user.destroy',$user->id) }}" style="display: none">
+                                <form id="delete-form-{{ $permission->id }}" method="post" action="{{ route('permission.destroy',$permission->id) }}" style="display: none">
                                   {{ csrf_field() }}
                                   {{ method_field('DELETE') }}
                                 </form>
@@ -44,7 +46,7 @@
                                 if(confirm('Are you sure, You Want to delete this?'))
                                     {
                                       event.preventDefault();
-                                      document.getElementById('delete-form-{{ $user->id }}').submit();
+                                      document.getElementById('delete-form-{{ $permission->id }}').submit();
                                     }
                                     else{
                                       event.preventDefault();

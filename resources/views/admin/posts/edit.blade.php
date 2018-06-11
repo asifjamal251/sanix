@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+<link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
+@endsection
 
 @section('headSection')
 <link rel="stylesheet" type="text/css" href="{{asset('admin/plugins/select2/select2.min.css')}}">
@@ -27,7 +30,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{ route('post.update', $post->id) }}" method="post">
+              <form role="form" action="{{ route('post.update', $post->id) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
                 <div class="card-body">
@@ -61,9 +64,41 @@
 
 
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="status" id="publish">
-                    <label class="form-check-label" for="exampleCheck1" @if($post->status == 1) checked @endif>Publish</label>
+                    <input type="checkbox" class="form-check-input" name="status" id="publish" value="1"  @if($post->status == 1) checked @endif>
+                    <label class="form-check-label" for="exampleCheck1">Publish</label>
                   </div>
+
+                  
+                  <div class="form-group">
+                  <label>Select Tags</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                    @foreach ($tags as $tag)
+                      <option value="{{ $tag->id }}"
+                        @foreach ($post->tags as $postTag)
+                          @if ($postTag->id == $tag->id)
+                            selected 
+                          @endif
+                        @endforeach>{{ $tag->name }}</option>
+                    @endforeach
+                    
+                  </select>
+                </div>
+
+                  <div class="form-group">
+                  <label>Select Categories</label>
+                  <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                    @foreach ($categories as $category)
+                      <option value="{{ $category->id }}"
+
+                        @foreach ($post->categories as $postCategory)
+                          @if ($postCategory->id == $category->id)
+                            selected 
+                          @endif
+                        @endforeach>{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
 
                   <div class="form-group">
                     <label for="image">Image</label>
@@ -112,6 +147,7 @@
 
 @endsection
 
+<<<<<<< HEAD
 
 @section('footerSection')
 <script type="text/javascript" src="{{asset('admin/plugins/select2/select2.full.min.js')}}"></script>
@@ -121,5 +157,14 @@
     $('.select2').select2()
   });
 
+=======
+@section('footerSection')
+<script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+<script src="{{  asset('admin/ckeditor/ckeditor.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    $(".select2").select2();
+  });
+>>>>>>> 45277ed94538b1b6a525266771abf3ae7ce29d8f
 </script>
 @endsection
