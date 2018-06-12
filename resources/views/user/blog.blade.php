@@ -108,7 +108,7 @@ small{
                         <span class="bg-img-blog" style="background-image: url('@if($post->image != ""){{Storage::disk('local')->url($post->image)}} @else                http://cevirdikce.com/proje/hasem-2/images/finance-1.jpg @endif')"></span>
                         <div class="blog-content">
                           <small class="post-meta">Posted by
-                          Start Bootstrap
+                          <strong>{{$post->posted_by}}</strong>
                           on {{ $post->created_at->diffForHumans() }}
                         </small>
                         <h4>{{ $post->title }}</h4>

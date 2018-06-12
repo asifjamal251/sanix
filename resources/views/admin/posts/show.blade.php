@@ -16,9 +16,9 @@
 <div class="card-body pad">
      <div class="card">
             <div class="card-header">
-              <h3 class="float-left">posts</h3>
+              <h3 class="float-left">Posts</h3>
                @can('posts.create', Auth::user())
-          <a class='col-lg-offset-5 btn btn-success' href="{{ route('post.create') }}">Add New</a>
+          <a class='col-lg-offset-5 btn btn-success float-right' href="{{ route('post.create') }}">Add New</a>
         @endcan
             </div>
             <!-- /.card-header -->
@@ -74,10 +74,23 @@
                         @endforeach
                 </tbody>
               </table>
+              <div id="pagination" class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  Showing {{ $posts->firstItem() }} to {{ $posts->lastItem() }} of {{ $posts->total() }} entries {{--(for page {{ $posts->currentPage() }} )--}}
+                </div>
+
+                <div class="col-sm-6">
+                  {{ $posts->links()}}
+                </div>
+             </div>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
+         
+          </div>
 </div>
     </section>
     <!-- /.content -->
@@ -90,17 +103,17 @@
 <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-<script>
+<!-- <script>
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
       "searching": false,
       "ordering": true,
-      "info": true,
+      "info": false,
       "autoWidth": false
     });
   });
-</script>
+</script> -->
 @endsection

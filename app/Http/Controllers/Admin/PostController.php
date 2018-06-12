@@ -27,7 +27,7 @@ class PostController extends Controller
      */
     public function index()
     {
-         $posts = post::all();
+         $posts = post::paginate(4);
         return view('admin.posts.show',compact('posts'));
     }
 
@@ -38,10 +38,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->can('post.create')){
+        if(Auth::user()->can('posts.create')){
             $tags = tag::all();
             $categories = category::all();
-            return view('admin.posts.add', compact('tags','categories')); 
+            return view('admin.posts.create', compact('tags','categories')); 
         }
         return redirect(route('admin.home'));
           
@@ -73,7 +73,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->slug = $request->slug; 
-        $post->body = $request->body; 
+        $post->body = $request->body;
+        $post->posted_by = Auth::user()->name; 
         $post->status = $request->status; 
         $post->save(); 
 
@@ -104,7 +105,7 @@ class PostController extends Controller
     public function edit($id)
     {
         //
-         if(Auth::user()->can('post.create')){
+         if(Auth::user()->can('posts.update')){
         $post = post::with('tags','categories')->where('id',$id)->first();
 
         $tags = tag::all();

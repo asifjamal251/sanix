@@ -8,7 +8,7 @@
 @include('admin.layouts.header')
 @include('admin.layouts.sidebar')
 
-<div class="container" style=" z-index: 3000; max-width: 350px">
+<div class="container" style=" z-index: 3000; max-width: 450px">
      @include('paratials.errors')
      @include('paratials.success')
 </div>

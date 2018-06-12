@@ -52,7 +52,7 @@ class UserController extends Controller
         $request['password'] = bcrypt($request->password);
         $user = admin::create($request->all());
         $user->roles()->sync($request->role);
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
     /**
      * Display the specified resource.
